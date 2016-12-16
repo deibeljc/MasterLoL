@@ -13,7 +13,7 @@ registerScreens(store, Provider); // this is where you register all of your app'
 Navigation.startSingleScreenApp({
   screen: {
     screen: 'masterlol.Home',
-    title: 'MasterLoL'
+    title: 'Champions'
   },
   drawer: {
     left: {

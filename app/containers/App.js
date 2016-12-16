@@ -1,45 +1,56 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, StatusBar } from 'react-native';
+import { getTheme } from 'react-native-material-kit';
+
+import Search from './Search';
+
+const theme = getTheme();
+// This is stupid and dumb.. lol
+const items = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 export default class App extends Component {
+  renderItems = (title) => {
+    return (
+      <View style={styles.container} key={title}>
+        <View style={theme.cardStyle}>
+          <Text style={theme.cardContentStyle}>
+            {title}: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Mauris sagittis pellentesque lacus eleifend lacinia...
+          </Text>
+        </View>
+      </View>
+    )
+  };
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+      <View>
+        {/* TODO: Have a global place for app colors */}
+        <StatusBar
+          backgroundColor="#f5f5f5"
+          barStyle="dark-content"
+        />
+        <ScrollView style={styles.scroll}>
+          {items.map((item, idx) => {
+            return this.renderItems(idx);
+          })}
+        </ScrollView>
+        <Search />
       </View>
     );
   }
 }
 
+/**
+ * The styles of this component
+ */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    backgroundColor: '#f1f1f1',
+    padding: 15,
+    paddingBottom: 0
+  }
 });
