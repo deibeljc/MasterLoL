@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView, StatusBar } from 'react-native';
-import { getTheme } from 'react-native-material-kit';
+import { StyleSheet, View, ScrollView, StatusBar } from 'react-native';
 
 import Search from './Search';
+import ChampionCard from './ChampionCard';
 
-const theme = getTheme();
-// This is stupid and dumb.. lol
-const items = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+// This is stupid and dumb..
+const items = [0, 0, 0, 0, 0, 0];
 
 export default class App extends Component {
-  renderItems = (title) => {
+  renderItems = (index) => {
     return (
-      <View style={styles.container} key={title}>
-        <View style={theme.cardStyle}>
-          <Text style={theme.cardContentStyle}>
-            {title}: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Mauris sagittis pellentesque lacus eleifend lacinia...
-          </Text>
-        </View>
-      </View>
+      <ChampionCard key={index} index={index} />
     )
   };
 
@@ -30,10 +22,15 @@ export default class App extends Component {
           backgroundColor="#f5f5f5"
           barStyle="dark-content"
         />
-        <ScrollView style={styles.scroll}>
-          {items.map((item, idx) => {
-            return this.renderItems(idx);
-          })}
+        <ScrollView
+          style={styles.container}
+          automaticallyAdjustContentInsets={false}
+        >
+          <View style={styles.scrollView}>
+            {items.map((item, idx) => {
+              return this.renderItems(idx);
+            })}
+          </View>
         </ScrollView>
         <Search />
       </View>
@@ -41,16 +38,12 @@ export default class App extends Component {
   }
 }
 
-/**
- * The styles of this component
- */
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f1f1f1',
-    padding: 15,
-    paddingBottom: 0
+    backgroundColor: '#f1f1f1'
+  },
+  scrollView: {
+    paddingTop: 6,
+    paddingBottom: 5
   }
 });

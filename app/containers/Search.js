@@ -25,8 +25,11 @@ export default class Search extends Component {
 const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
+    height: 50,
+    backgroundColor: '#fff',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    elevation: 3
   },
   search: {
     width: 200,
